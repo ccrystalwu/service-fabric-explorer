@@ -76,6 +76,10 @@ export class RestClientService {
   public getClusterHealthChunk(healthDescriptor: IClusterHealthChunkQueryDescription, messageHandler?: IResponseMessageHandler): Observable<{}> {
       return this.post(this.getApiUrl('$/GetClusterHealthChunk'), 'Get cluster health chunk', healthDescriptor, messageHandler);
   }
+  
+  public getClusterRecoveryInsight(messageHandler?: IResponseMessageHandler): Observable<string> {
+    return this.get(this.getApiUrl('$/GetClusterInsight'), 'Get cluster recovery insight', messageHandler);
+}
 
   public getDeployedContainersOnNetwork(networkName: string, nodeName: string, messageHandler?: IResponseMessageHandler): Observable<IRawDeployedContainerOnNetwork[]> {
       const url = 'Nodes/' + encodeURIComponent(nodeName) + '/$/GetNetworks/' + encodeURIComponent(networkName) + '/$/GetCodePackages';

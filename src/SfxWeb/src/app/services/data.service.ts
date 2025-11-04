@@ -163,6 +163,10 @@ export class DataService {
       };
   }
 
+  public getClusterRecoveryInsight(messageHandler?: IResponseMessageHandler): Observable<string> {
+    return this.restClient.getClusterRecoveryInsight(messageHandler);
+  }
+  
   public getSystemApp(forceRefresh?: boolean, messageHandler?: IResponseMessageHandler): Observable<SystemApplication> {
     return this.systemApp.ensureInitialized(forceRefresh, messageHandler).pipe(map( () => this.systemApp));
   }

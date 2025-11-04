@@ -12,6 +12,10 @@ export class IdGenerator {
         return '<cluster>';
     }
 
+    public static recoveryInsight(): string {
+        return '<recovery insight>';
+    }
+
     public static appGroup(): string {
         return '<app group>';
     }

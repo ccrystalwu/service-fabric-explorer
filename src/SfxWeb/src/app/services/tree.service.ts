@@ -145,6 +145,14 @@ export class TreeService {
                 };
             }));
 
+            const getRecoveryInsightPromise = of({
+                nodeId: IdGenerator.recoveryInsight(),
+                displayName: () => 'Recovery Insight',
+                selectAction: () => this.routes.navigate(() => '/recovery-insight', () => this.focusService.focus()),
+                childrenQuery: () => of([]),
+                alwaysVisible: true
+            });
+
             const systemNodePromise = this.data.getSystemApp().pipe(
                             catchError(err => {
                 return of(null);
@@ -175,7 +183,7 @@ export class TreeService {
             );
 
 
-            return forkJoin([getAppsPromise, getNodesPromise, systemNodePromise]).pipe(map(resp => {
+            return forkJoin([getAppsPromise, getNodesPromise, getRecoveryInsightPromise, systemNodePromise]).pipe(map(resp => {
                 if (resp[2] === null) {
                     resp.splice(2);
                     return resp;
