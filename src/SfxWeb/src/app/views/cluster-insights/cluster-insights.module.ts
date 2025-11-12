@@ -7,6 +7,7 @@ import { ClusterInsightsRoutingModule } from './cluster-insights-routing.module'
 import { FmmLocationComponent } from './fmm-location/fmm-location.component';
 import { ChartsModule } from 'src/app/modules/charts/charts.module';
 import { FMMNodesComponent } from './fmm-nodes/all-nodes.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [ReplicaListComponent, FmmLocationComponent, FMMNodesComponent],
@@ -15,7 +16,8 @@ import { FMMNodesComponent } from './fmm-nodes/all-nodes.component';
     DetailListTemplatesModule,
     NgbNavModule,
     ChartsModule,
-    ClusterInsightsRoutingModule
+    ClusterInsightsRoutingModule,
+    CommonModule
   ],
   exports: [ReplicaListComponent]
 })
