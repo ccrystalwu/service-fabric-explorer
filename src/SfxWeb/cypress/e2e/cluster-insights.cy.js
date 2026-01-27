@@ -104,7 +104,7 @@ context('cluster-insights', () => {
         
         cy.wait('@replicaDetail');
         cy.get('tbody > tr').first().within(() => {
-          cy.get('span.replica-id-link').click();
+          cy.get('span.expandable-link').click();
         });
         
         cy.get('[data-cy=replica-detail-panel]').should('be.visible');

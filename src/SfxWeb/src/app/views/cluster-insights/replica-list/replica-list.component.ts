@@ -3,7 +3,7 @@ import { RestClientService } from 'src/app/services/rest-client.service';
 import { ListSettings, ListColumnSettingWithFilter, ListColumnSettingForColoredNodeName, ListColumnSettingForBadge, ListColumnSetting } from 'src/app/Models/ListSettings';
 import { forkJoin, interval, Subscription, of, Observable } from 'rxjs';
 import { switchMap, startWith, catchError } from 'rxjs/operators';
-import { ListColumnSettingWithExpandableLink } from '../replica-id-link/replica-id-link.component';
+import { ListColumnSettingWithExpandableLink } from '../expandable-link/expandable-link.component';
 import { ListColumnSettingForExpandedDetails } from '../replica-details/replica-details.component';
 
 interface ServiceConfig {
@@ -293,6 +293,7 @@ export class ReplicaListComponent implements OnInit, OnDestroy {
         isPrimary: replica.ReplicaRole === ReplicaRole.Primary,
         isClickable: replica.ReplicaStatus !== 'Down',
         countsTowardWriteQuorum: countsTowardWriteQuorum,
+        showPotentialMitigation: shouldHighlight,
         cssClass: (partitionStatus === PartitionStatus.InQuorumLoss && shouldHighlight) ? 'highlighted-row' : ''
       };
     });

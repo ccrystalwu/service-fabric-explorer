@@ -1,4 +1,8 @@
 <span 
-  [class.replica-id-link]="item?.isClickable" 
-  [class.non-replica-id-link]="!item?.isClickable"
-  (click)="onClick()">{{ getReplicaId() }}</span>
+  [class.expandable-link]="item?.isClickable" 
+  [class.non-expandable-link]="!item?.isClickable"
+  [style.color]="color"
+  (click)="onClick()">
+  {{ getDisplayText() }}
+  <i *ngIf="showIcon" class="mif-info info-icon" [title]="nodeStatusMessage"></i>
+</span>
