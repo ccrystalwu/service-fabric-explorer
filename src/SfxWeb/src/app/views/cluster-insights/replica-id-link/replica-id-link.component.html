@@ -1,8 +1,0 @@
-<span 
-  [class.expandable-link]="item?.isClickable" 
-  [class.non-expandable-link]="!item?.isClickable"
-  [style.color]="color"
-  (click)="onClick()">
-  {{ getDisplayText() }}
-  <i *ngIf="showIcon" class="mif-info info-icon" [title]="nodeStatusMessage"></i>
-</span>

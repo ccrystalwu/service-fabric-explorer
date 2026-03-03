@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DetailBaseComponent } from 'src/app/ViewModels/detail-table-base.component';
-import { ListColumnSetting } from 'src/app/Models/ListSettings';
-import { NodeStatus } from 'src/app/Models/RawDataTypes';
+import { ListColumnSetting, ListColumnSettingWithFilter } from 'src/app/Models/ListSettings';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -23,12 +22,12 @@ export class ExpandableLinkComponent implements DetailBaseComponent, OnInit {
 
   ngOnInit(): void {
     const setting = this.listSetting as ListColumnSettingWithExpandableLink;
-    this.displayText = setting.displayText || this.listSetting.getValue(this.item) || '';
-    this.infoMessage = setting.infoMessage || '';
-    this.color = setting.color || 'var(--accent-lightblue)';
-    this.showIcon = setting.showIcon || false;
+    this.displayText = this.listSetting.getValue(this.item) ?? '';
+    this.infoMessage = this.item?.infoMessage ?? '';
+    this.color = this.item?.color ?? 'var(--accent-lightblue)';
+    this.showIcon = this.item?.showPotentialMitigation ?? false;
     this.statusField = setting.statusField;
-    this.showSeedNodeIndicator = setting.showSeedNodeIndicator || false;
+    this.showSeedNodeIndicator = setting.showSeedNodeIndicator ?? false;
   }
 
   getDisplayText(): string {
@@ -71,19 +70,12 @@ export class ExpandableLinkComponent implements DetailBaseComponent, OnInit {
 export class ListColumnSettingWithExpandableLink extends ListColumnSetting {
   template = ExpandableLinkComponent;
   clickHandler: (item: any) => void;
-  displayText?: string;
-  infoMessage?: string;
-  color?: string;
-  showIcon?: boolean;
   statusField?: string;
   showSeedNodeIndicator?: boolean;
   
-  constructor(propertyPath: string, displayName: string, clickHandler?: (item: any) => void, color?: string, infoMessage?: string, showIcon?: boolean, statusField?: string, showSeedNodeIndicator?: boolean) {
+  constructor(propertyPath: string, displayName: string, clickHandler?: (item: any) => void, statusField?: string, showSeedNodeIndicator?: boolean) {
     super(propertyPath, displayName);
     this.clickHandler = clickHandler;
-    this.color = color || 'var(--accent-lightblue)';
-    this.infoMessage = infoMessage || '';
-    this.showIcon = showIcon || false;
     this.statusField = statusField;
     this.showSeedNodeIndicator = showSeedNodeIndicator || false;
   }
